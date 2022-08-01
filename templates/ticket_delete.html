@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block content %}
+<h1 class="flex flex-col m-10 text-center text-2xl">Страница удаления заявки</h1>
+<div class="m-10 border border-indigo-600">
+	<form action="" method="post">{% csrf_token %}
+		<div class="flex flex-col m-10">
+			<p>Вы уверены, что желаете удалить заявку?</p>
+			<div class="mt-5">
+				<button type="submit" class="bg-red-500 hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">
+					Подтвердить удаление
+				</button>
+			</div>
+		</div>
+		{% include '_single_ticket.html' %}
+	</form>
+</div>
+{% endblock content %}

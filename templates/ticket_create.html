@@ -1,0 +1,76 @@
+{% extends "_base.html" %}
+{% load my_filters %}
+{% block content %}
+<h1 class="flex flex-col m-10 text-center text-2xl">Новая заявка</h1>
+<div class="m-10 border border-indigo-600">
+	<form action="" method="post" class="flex flex-col flex-wrap">
+		{% csrf_token %}
+		{{ form.non_field.errors }}
+		<div class="flex flex-row flex-wrap">
+			<div class="m-5">
+				<label for="{{ form.ticket_name.id_for_label }}"></label>
+				{{ form.ticket_name|add_attr:'placeholder /// Наименование заявки...| class///w-fit | type///text | size///50' }}
+				<div>
+					{{ form.ticket_name.errors }}
+				</div>
+			</div>
+			<div class="m-5 h-30">
+				<label for="{{ form.organization_name.id_for_label }}"></label>
+				{{ form.organization_name|add_attr:'placeholder /// Наименование организации...| class///w-fit | type///text | size///50' }}
+				<div>
+					{{ form.organization_name.errors }}
+				</div>
+			</div>
+			<div class="m-5">
+				<label for="{{ form.applicant.id_for_label }}"></label>
+				{{ form.applicant|add_attr:'placeholder /// Заявитель ...| class///w-fit | type///text | size///50' }}
+				<div>
+					{{ form.applicant.errors }}
+				</div>
+			</div>
+		</div>
+		<div class="flex flex-row flex-wrap">
+			<div class="m-5">
+				<label for="{{ form.priority.id_for_label }}">Уровень приоритета</label>
+				{{ form.priority }}
+				<div>
+					{{ form.priority.errors }}
+				</div>
+			</div>
+			<div class="m-5">
+				<label for="{{ form.status.id_for_label }}">Статус</label>
+				{{ form.status }}
+				<div>
+					{{ form.status.errors }}
+				</div>
+			</div>
+		</div>
+		<div class="flex flew-row flex-wrap">
+			<div class="m-5">
+				<label for="{{ form.type.id_for_label }}">Тип заявки</label>
+				{{ form.type }}
+				<div>
+					{{ form.type.errors }}
+				</div>
+			</div>
+			<div class="m-5">
+				<label for="{{ form.executor.id_for_label }}">Исполнитель</label>
+				{{ form.executor }}
+				<div>
+					{{ form.executor.errors }}
+				</div>
+			</div>
+		</div>
+		<div class="m-5 flex flex-row">
+			<button type="submit" class="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-emerald-50">
+				Сохранить заявку
+			</button>
+			<p class=" mt-1 mb-1 ml-1 mr-1"><a href="{% url 'ticket_list' %}">
+				<button type="button" class="bg-green-500 hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 active:bg-green-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">
+					Вернуться к списку всех заявок
+				</button>
+			</a></p>
+		</div>
+	</form>
+</div>
+{% endblock content %}

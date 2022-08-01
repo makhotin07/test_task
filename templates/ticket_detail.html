@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<h1 class="flex flex-col m-10 text-center text-2xl">Страница просмотра заявки</h1>
+
+	{% include '_single_ticket.html' %}
+
+
+
+
+<div class="flex flex-col m-10 border border-indigo-600">
+    <p class=" mt-1 mb-1 ml-1 mr-1 ">
+
+
+        <a href="{% url 'ticket_edit' ticket.pk %}">
+                <button type="button" class="bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-yellow-300 active:bg-yellow-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">
+      Изменить заявку
+    </button>
+
+        </a>
+        <a href="{% url 'ticket_delete' ticket.pk %}">
+        <button type="button" class="bg-red-500 hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">
+      Удалить заявку
+    </button>
+
+
+        </a>
+    </p>
+    <p class=" mt-1 mb-1 ml-1 mr-1"> <a href="{% url 'ticket_list' %}">
+    <button type="button" class="bg-green-500 hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 active:bg-green-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">
+      Вернуться к списку всех заявок
+    </button>
+
+    </a></p>
+</div>
+{% endblock content %}

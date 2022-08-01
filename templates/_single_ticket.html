@@ -1,0 +1,36 @@
+<div class="flex flex-col m-10 border border-indigo-600">
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Дата:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.date | date:"d/m/Y G:i" }}</p>
+	</div>
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Название организации:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.organization_name }}</p>
+	</div>
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Заявитель:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.applicant }}</p>
+	</div>
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Приоритет:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.get_priority_display }}</p>
+	</div>
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Тип заявки:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.type }}</p></div>
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Название заявки:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.ticket_name }}</p>
+	</div>
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Статус заявки:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.get_status_display}}</p>
+	</div>
+	{% if ticket.executor %}
+	<div class="flex flex-row ml-8 mr-8 mt-3 mb-3">
+		<p class=" mt-1 mb-1 ml-1 mr-1">Исполнитель:</p>
+		<p class=" mt-1 mb-1 ml-1 mr-1">{{ ticket.executor }}</p>
+	</div>
+	{% endif %}
+</div>
+

@@ -1,46 +1,75 @@
 {% extends "_base.html" %}
 {% block content %}
+    <h1 class=" m-10 text-center text-2xl">Главная страница</h1>
 
-<h1 class=" m-10 text-center text-2xl">Обзор заявок колл-центра</h1>
-<table class="table-auto m-10 border-separate border-spacing-2 border border-slate-400 md:border-spacing-4">
-	<thead>
-	<tr>
-		<th class="border border-slate-300">Дата</th>
-		<th class="border border-slate-300">Название организации</th>
-		<th class="border border-slate-300">Заявитель</th>
-		<th class="border border-slate-300">Приоритет</th>
-		<th class="border border-slate-300">Тип заявки</th>
-		<th class="border border-slate-300">Название заявки</th>
-		<th class="border border-slate-300">Статус заявки</th>
 
-		<th class="border border-slate-300">Исполнитель</th>
+    <h2 class=" m-10 text-center text-1xl">Обзор заявок колл-центра</h2>
+    <table class="table-auto m-10 border-separate border-spacing-2 border border-slate-400 md:border-spacing-4">
+        <thead>
+        <tr>
+            <th class="border border-slate-300">Дата</th>
+            <th class="border border-slate-300">Название организации</th>
+            <th class="border border-slate-300">Заявитель</th>
+            <th class="border border-slate-300">Приоритет</th>
+            <th class="border border-slate-300">Тип заявки</th>
+            <th class="border border-slate-300">Название заявки</th>
+            <th class="border border-slate-300">Статус заявки</th>
 
-		<th class="border border-slate-300 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-5 py-2 text-sm leading-5  font-semibold text-emerald-50"><a href="{% url 'ticket_new' %}">Создать
-																																																												   новую
-																																																												   заявку</a>
-		</th>
-	</tr>
-	</thead>
-	<tbody>
-	{% for ticket in ticket_list %}
-	<tr class="{% if forloop.counter|divisibleby:2 %}bg-sky-500/50{% endif %}">
-		<td class="text-center border border-slate-300">{{ ticket.date | date:"d/m/Y G:i" }}</td>
-		<td class="text-center border border-slate-300">{{ ticket.organization_name }}</td>
-		<td class="text-center border border-slate-300">{{ ticket.applicant }}</td>
-		<td class="text-center border border-slate-300">{{ ticket.get_priority_display }}</td>
-		<td class="text-center border border-slate-300">{{ ticket.type }}</td>
-		<td class="text-center border border-slate-300">{{ ticket.ticket_name }}</td>
-		<td class="text-center border border-slate-300">{{ ticket.get_status_display}}</td>
-		{% if ticket.executor %}
-		<td class="text-center border border-slate-300">{{ ticket.executor }}</td>
-		 {% else %}
-		<td class="text-center border border-slate-300">Не выбран</td>
-		{% endif %}
-		<td class="text-center border border-slate-300">
-			<a href="{% url 'ticket_detail' ticket.id %}">Открыть страницу заявки</a>
-		</td>
-	</tr>
-	{% endfor %}
-	</tbody>
-</table>
+            <th class="border border-slate-300">Исполнитель</th>
+
+            <th class="border border-slate-300 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-5 py-2 text-sm leading-5  font-semibold text-emerald-50">
+                <a href="{% url 'ticket_new' %}">Создать новую заявку</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ticket in ticket_list %}
+            <tr class="{% if forloop.counter|divisibleby:2 %}bg-sky-500/50{% endif %}">
+                <td class="text-center border border-slate-300">{{ ticket.date | date:"d/m/Y G:i" }}</td>
+                <td class="text-center border border-slate-300">{{ ticket.organization_name }}</td>
+                <td class="text-center border border-slate-300">{{ ticket.applicant }}</td>
+                <td class="text-center border border-slate-300">{{ ticket.get_priority_display }}</td>
+                <td class="text-center border border-slate-300">{{ ticket.type }}</td>
+                <td class="text-center border border-slate-300">{{ ticket.ticket_name }}</td>
+                <td class="text-center border border-slate-300">{{ ticket.get_status_display }}</td>
+                {% if ticket.executor %}
+                    <td class="text-center border border-slate-300">{{ ticket.executor }}</td>
+                {% else %}
+                    <td class="text-center border border-slate-300">Не выбран</td>
+                {% endif %}
+                <td class="text-center border border-slate-300">
+                    <a href="{% url 'ticket_detail' ticket.id %}">Открыть страницу заявки</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class=" m-10 text-center text-1xl">Список компаний</h2>
+    <div class="flex justify-center">
+        <table class="table-auto m-10 border-separate border-spacing-2 border border-slate-400 md:border-spacing-4">
+            <thead>
+            <tr>
+
+                <th class="border border-slate-300">Название компании</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for ticket_company in ticket_companies_list %}
+                <tr class="{% if forloop.counter|divisibleby:2 %}bg-sky-500/50{% endif %}">
+                    <td class="text-center border border-slate-300">{{ ticket_company.organization_name}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
 {% endblock content %}

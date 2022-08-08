@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+    <h1 class=" m-10 text-center text-2xl">Все типы заявок </h1>
+    <div class="flex justify-center">
+    <table class="table-auto m-10 border-separate border-spacing-2 border border-slate-400 md:border-spacing-4">
+        <thead>
+        <tr>
+            <th class="border border-slate-300">ID</th>
+            <th class="border border-slate-300">Тип заявки</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        {% for type_ticket in typeticket_list %}
+            <tr class="{% if forloop.counter|divisibleby:2 %}bg-sky-500/50{% endif %}">
+                <td class="text-center border border-slate-300">{{ type_ticket.pk }}</td>
+                <td class="text-center border border-slate-300">{{ type_ticket.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock content %}

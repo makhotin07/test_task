@@ -6,9 +6,10 @@ from accounts.models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields +("executor",)
+        fields = UserCreationForm.Meta.fields + ("executor",)
+
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = UserCreationForm.Meta.fields
-
